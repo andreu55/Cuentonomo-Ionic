@@ -12,16 +12,22 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
-  <ion-list padding>
+  <h3 margin>
+    <!-- <ion-icon name="logo-bitcoin" item-start></ion-icon> -->
+    Introduce nuevo Gasto
+  </h3>
 
+  <ion-list>
     <ion-item>
+      <ion-icon name="calculator" item-start></ion-icon>
       <ion-label floating>Cantidad</ion-label>
-      <ion-input type="number" [(ngModel)]="datos.cantidad"></ion-input>
+      <ion-input type="number" [(ngModel)]="datos.cantidad" max=1000 clearInput></ion-input>
     </ion-item>
 
     <ion-item>
+      <ion-icon name="analytics" item-start></ion-icon>
       <ion-label floating>Tipo</ion-label>
       <ion-select [(ngModel)]="datos.tipo">
         <ion-option value="1">Restaurantes</ion-option>
@@ -32,13 +38,15 @@
     </ion-item>
 
     <ion-item>
+      <ion-icon name="calendar" item-start></ion-icon>
       <ion-label floating>Fecha</ion-label>
       <ion-datetime type="datetime" displayFormat="DD/MM/YYYY" [(ngModel)]="datos.fecha"></ion-datetime>
     </ion-item>
 
     <ion-item>
+      <ion-icon name="text" item-start></ion-icon>
       <ion-label floating>Concepto</ion-label>
-      <ion-input type="text" [(ngModel)]="datos.concepto"></ion-input>
+      <ion-input type="text" [(ngModel)]="datos.concepto" clearInput></ion-input>
     </ion-item>
 
     <button margin-top ion-button outline large icon-left block (click)="nuevoGasto()">
