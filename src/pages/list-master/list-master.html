@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ name }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list padding>
+
+    <ion-item>
+      <ion-label floating>Cantidad</ion-label>
+      <ion-input type="number" [(ngModel)]="datos.cantidad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tipo</ion-label>
+      <ion-select [(ngModel)]="datos.tipo">
+        <ion-option value="1">Restaurantes</ion-option>
+        <ion-option value="2">Servicios</ion-option>
+        <ion-option value="3">Hardware</ion-option>
+        <ion-option value="4">baile</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Fecha</ion-label>
+      <ion-datetime type="datetime" displayFormat="DD/MM/YYYY" [(ngModel)]="datos.fecha"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Concepto</ion-label>
+      <ion-input type="text" [(ngModel)]="datos.concepto"></ion-input>
+    </ion-item>
+
+    <button margin-top ion-button outline large icon-left block (click)="nuevoGasto()">
+      <ion-icon name="{{ boton.icono }}" margin-right></ion-icon>
+      {{ boton.texto }}
+    </button>
+
+  </ion-list>
+
+
+</ion-content>
