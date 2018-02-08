@@ -7,34 +7,18 @@ import { Config, Nav, Platform } from 'ionic-angular';
 import { FirstRunPage } from '../pages/pages';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
   rootPage = FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Nuevo Gasto', component: 'ListMasterPage' }
-  ]
+  // pages: any[] = [
+  //   { title: 'Cards', component: 'CardsPage' },
+  //   { title: 'Content', component: 'ContentPage' },
+  //   { title: 'Nuevo Gasto', component: 'ListMasterPage' },
+  // ]
 
   constructor(private translate: TranslateService, platform: Platform, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     platform.ready().then(() => {
