@@ -9,22 +9,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let gasto of gastos">
       <ion-item>
-        <b>Cafetería may flowers</b><br>
-        <span class="total">13.10€</span> = <span class="base">11.91</span> <ion-icon name="arrow-round-forward"></ion-icon> <span class="desgr">1.19</span> <span class="iva">(10%)</span>
+        <b>{{ gasto.concepto }}</b> <span class="fecha">{{ gasto.fecha }}</span><br>
+        <span class="total">{{ gasto.total }}€</span> = <span class="base">{{ gasto.base }}</span> <ion-icon name="arrow-round-forward"></ion-icon> <span class="desgr">{{ gasto.desgr }}</span> <span class="iva">({{ gasto.iva }}%)</span>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borraGasto(146)"><ion-icon name="trash"></ion-icon>Borrar</button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item>
-        <b>Cafetería may flowers</b><br>
-        <span class="total">13.10€</span> = <span class="base">11.91</span> <ion-icon name="arrow-round-forward"></ion-icon> <span class="desgr">1.19</span> <span class="iva">(10%)</span>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borraGasto(item)"><ion-icon name="trash"></ion-icon>Borrar</button>
+        <button ion-button color="danger" (click)="borraGasto(gasto.id)"><ion-icon name="trash"></ion-icon>Borrar</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
