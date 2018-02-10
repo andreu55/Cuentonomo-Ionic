@@ -63,8 +63,8 @@ export class ListMasterPage {
       if (res.status == 'success') {
         let toast = this.toastCtrl.create({
           message: "¡Gasto guardado!",
-          duration: 2000,
-          position: 'bottom',
+          duration: 1000,
+          position: 'middle',
           showCloseButton: true,
           closeButtonText: 'yeah!'
         });

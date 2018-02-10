@@ -12,17 +12,20 @@ export class ContentPage {
 
   api_token:string;
 
-  gastos: [
-    {
-      id:number,
-      total:string,
-      base:string,
-      desgr:string,
-      iva:string,
-      concepto:string,
-      fecha:string
-    }
-  ];
+  borrar: { icon:string, texto:string } = {
+    icon: 'trash',
+    texto: 'Borrar'
+  };
+
+  gastos: [{
+    id:number,
+    total:string,
+    base:string,
+    desgr:string,
+    iva:string,
+    concepto:string,
+    fecha:string
+  }];
 
   constructor(
     public navCtrl: NavController,
@@ -53,6 +56,7 @@ export class ContentPage {
       if (res.status == 'success') {
         this.gastos = res.gastos;
         loading.dismiss();
+        console.log(this.gastos);
       }
     }, err => {
       // console.error('ERROR', err);
@@ -67,7 +71,10 @@ export class ContentPage {
     // return seq;
   }
 
-  borraGasto(gasto_id) {
+  borraGasto(gasto_id, i) {
+
+    this.borrar.icon = 'cafe';
+    this.borrar.texto = '.....';
 
     let headers = {
       'headers': {
@@ -81,8 +88,10 @@ export class ContentPage {
     seq.subscribe((res: any) => {
 
       if (res.status == 'success') {
-        // this.gastos
         // $scope.items.splice(index, 1);
+        this.gastos.splice(i, 1);
+        this.borrar.icon = 'trash';
+        this.borrar.texto = 'Borrar';
       }
     }, err => {
       // console.error('ERROR', err);

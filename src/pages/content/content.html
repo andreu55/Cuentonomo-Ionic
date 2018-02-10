@@ -9,13 +9,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let gasto of gastos">
+    <ion-item-sliding *ngFor="let gasto of gastos; let i = index">
       <ion-item>
         <b>{{ gasto.concepto }}</b> <span class="fecha">{{ gasto.fecha }}</span><br>
         <span class="total">{{ gasto.total }}€</span> = <span class="base">{{ gasto.base }}</span> <ion-icon name="arrow-round-forward"></ion-icon> <span class="desgr">{{ gasto.desgr }}</span> <span class="iva">({{ gasto.iva }}%)</span>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="danger" (click)="borraGasto(gasto.id)"><ion-icon name="trash"></ion-icon>Borrar</button>
+        <button ion-button color="danger" (click)="borraGasto(gasto.id, i)"><ion-icon name="{{ borrar.icon }}"></ion-icon>{{ borrar.texto }}</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
