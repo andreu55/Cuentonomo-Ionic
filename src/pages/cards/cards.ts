@@ -29,46 +29,78 @@ export class CardsPage {
 
   createNotification() {
 
-    var noche = new Date();
+    var tarde = new Date();
     var dia = new Date();
 
-    var lasOcho = new Date();
-    lasOcho.setHours(8, 0, 0);
+    dia.setHours(9, 30, 0); // Set hours, minutes and seconds
+    tarde.setHours(18, 30, 0); // Set hours, minutes and seconds
 
-    // Si han pasado las 8 de la mañana, creamos la notificacion para el dia siguiente
-    if (new Date() > lasOcho) {
+    if (new Date() > dia) {
       dia.setDate(dia.getDate() + 1); // Suma un día
-      noche.setDate(noche.getDate() + 1); // Suma un día
-    } else {
-      console.log('Son antes de las 8, las configuramos para hoy!');
-    }
+    } else { console.log('Aun no han pasado, configuramos "dia" para hoy!'); }
 
-    dia.setHours(8, 0, 0); // Set hours, minutes and seconds
-    noche.setHours(1, 10, 0); // Set hours, minutes and seconds
+    if (new Date() > tarde) {
+      tarde.setDate(tarde.getDate() + 1); // Suma un día
+    } else { console.log('Aun no han pasado, configuramos "tarde" para hoy!'); }
 
-    console.log(dia);
-    console.log(noche);
+
+    // console.log(dia);
+    // console.log(tarde);
+
+    this.localNotifications.clearAll();
+    this.localNotifications.cancelAll();
 
     this.localNotifications.schedule([
       {
         id: 1,
         title: 'Genial!',
-        text: 'Notificaciones activadas correctamente :)'
+        text: 'Notificaciones activadas correctamente :)',
+        group: 'notif',
+        vibrate: false,
+        sound: null
       },{
         id: 2,
-        text: 'Notificación de prueba sin titulaco!',
-        trigger: {at: new Date(new Date().getTime() + 7000)},
-        led: {color: 'FF0000', on: 500, off: 1000}
+        title: 'Genial!',
+        text: 'Notificacion 10 segundos después :)',
+        trigger: {at: new Date(new Date().getTime() + 10000)},
+        led: {color: '7376DF', on: 200, off: 5000},
+        group: 'notif',
+        actions: [
+          { id: 'yes', title: 'Yes' },
+          { id: 'no',  title: 'No' }
+        ]
       },{
-        id: 3,
-        title: 'Buenos días!',
+        id: 10,
+        title: '¡Buenos días! ¿Has guardado tu hora de entrada?',
         trigger: {at: dia},
-        led: {color: '0000FF', on: 500, off: 3000}
+        led: {color: '7376DF', on: 200, off: 5000},
+        group: 'notif',
+        vibrate: false,
+        sound: null,
       },{
-        id: 4,
+        id: 20,
+        title: '¡Buenas tardes! ¿Has guardado tu hora de salida?',
+        trigger: {at: tarde},
+        led: {color: '7376DF', on: 200, off: 5000},
+        group: 'notif',
+        vibrate: false,
+        sound: null,
+      },{
+        id: 11,
+        title: 'Buenos días!',
+        trigger: {at: new Date(dia.getDate() + 1)},
+        led: {color: '7376DF', on: 200, off: 5000},
+        group: 'notif',
+        vibrate: false,
+        sound: null,
+      },{
+        id: 21,
         title: 'Buenas noches!',
-        trigger: {at: noche},
-        led: {color: '00FF00', on: 500, off: 3000}
+        trigger: {at: new Date(tarde.getDate() + 1)},
+        led: {color: '7376DF', on: 200, off: 5000},
+        group: 'notif',
+        vibrate: false,
+        sound: null,
       }
     ]);
 
